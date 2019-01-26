@@ -56,6 +56,7 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
 
 COPY requirements.txt requirements.txt
 RUN pip install --upgrade pip six && pip install --no-cache-dir -r requirements.txt
+RUN pip install torch torchvision
 
 RUN mkdir -p /actionProxy
 ADD https://raw.githubusercontent.com/apache/incubator-openwhisk-runtime-docker/dockerskeleton%401.3.3/core/actionProxy/actionproxy.py /actionProxy/actionproxy.py

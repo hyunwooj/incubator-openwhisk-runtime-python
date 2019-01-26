@@ -21,7 +21,7 @@ include 'core:pythonAction'
 include 'core:python2Action'
 include 'core:python3AiAction'
 include 'core:pythonActionLoop'
-include 'core:pythonCudaAction'
+include 'core:python2CudaAction'
 
 
 rootProject.name = 'runtime-python'
