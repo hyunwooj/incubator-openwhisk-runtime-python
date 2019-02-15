@@ -15,5 +15,5 @@
  * limitations under the License.
  */
 
-ext.dockerImageName = 'python3cudaaction'
+ext.dockerImageName = 'python2cudaaction'
 apply from: '../../gradle/docker.gradle'
