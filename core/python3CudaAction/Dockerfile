@@ -23,17 +23,23 @@ FROM nvidia/cuda:9.0-base
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
-        python \
-        python-dev \
         rsync \
         software-properties-common \
-        unzip \
+        unzip
+        # && \
+    # apt-get clean && \
+    # rm -rf /var/lib/apt/lists/*
+
+RUN add-apt-repository -y ppa:deadsnakes/ppa
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3.6 \
+        # python3-dev \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
-    python get-pip.py && \
+    python3.6 get-pip.py && \
     rm get-pip.py
 
 COPY requirements.txt requirements.txt
@@ -46,4 +52,4 @@ ADD https://raw.githubusercontent.com/apache/incubator-openwhisk-runtime-docker/
 RUN mkdir -p /pythonAction
 ADD https://raw.githubusercontent.com/apache/incubator-openwhisk-runtime-python/3%401.0.3/core/pythonAction/pythonrunner.py /pythonAction/pythonrunner.py
 
-CMD ["/bin/bash", "-c", "cd /pythonAction && python -u pythonrunner.py"]
+CMD ["/bin/bash", "-c", "cd /pythonAction && python3.6 -u pythonrunner.py"]
